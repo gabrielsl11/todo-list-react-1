@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Input from './Input'
 import Button from './Button'
 
-function CreateNewTask(props) {
+function CreateNewTask({ onCreateClick }) {
     let [title, setTitle] = useState('')
     let [description, setDescription] = useState('')
 
@@ -20,7 +20,7 @@ function CreateNewTask(props) {
                         } else {
                             setTitle('')
                             setDescription('')
-                            props.onCreateClick(title, description)
+                            onCreateClick(title, description)
                         }
                     }
                 }
