@@ -1,30 +1,15 @@
 import CreateNewTask from './components/CreateNewTask'
 import ShowAllTasks from './components/ShowAllTasks'
 import Title from './components/Title'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Github } from 'lucide-react'
 
 function App() {
-  let [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: 'Buy groceries',
-      description: 'Milk, bread, eggs, and vegetables',
-      completed: false,
-    },
-    {
-      id: 2,
-      title: 'Clean house',
-      description: 'Vacuum, dust, and sweep floors',
-      completed: false,
-    },
-    {
-      id: 3,
-      title: 'Pay bills',
-      description: 'Electricity, water, and cable',
-      completed: false,
-    }
-  ])
+  let [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || [])
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   function onCompleteClick(taskId) {
     setTasks(

@@ -1,5 +1,8 @@
-import { ChevronRight, Check, X } from 'lucide-react'
+import { ChevronRight, Check, X, Delete } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import TaskButton from './TaskButton'
+import DetailsButton from './DetailsButton'
+import DeleteButton from './DeleteButton'
 
 function ShowAllTasks({ tasks, onCompleteClick, onDeleteClick }) {
     let navigate = useNavigate()
@@ -16,26 +19,25 @@ function ShowAllTasks({ tasks, onCompleteClick, onDeleteClick }) {
                 {tasks.map((task) => {
                     return (
                         <li key={task.id} className='flex space-x-1'>
-                            <button
+                            <TaskButton
                                 title={task.description}
                                 onClick={() => onCompleteClick(task.id)}
-                                className='flex items-center gap-1 text-start p-2 rounded-md transition-all bg-slate-200 cursor-pointer hover:brightness-105 w-full'
                             >
                                 {task.completed ? <Check size={18} className='text-green-600' /> : <X size={18} className='text-red-600' />}
                                 <span className={`${task.completed ? 'line-through text-slate-500' : ''}`}>{task.title}</span>
-                            </button>
+                            </TaskButton>
 
-                            <button
+                            <DetailsButton
                                 onClick={() => onDetailsClick(task)}
                                 className='p-2 rounded-md transition-all bg-slate-200 cursor-pointer hover:brightness-105 hover:text-blue-600'
                             ><ChevronRight />
-                            </button>
+                            </DetailsButton>
 
-                            <button
+                            <DeleteButton
                                 onClick={() => onDeleteClick(task.id)}
                                 className='p-2 rounded-md transition-all bg-slate-200 cursor-pointer hover:brightness-105 hover:text-red-600'
                             ><X />
-                            </button>
+                            </DeleteButton>
                         </li>
                     )
                 })}
