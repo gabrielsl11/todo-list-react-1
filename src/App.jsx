@@ -51,6 +51,7 @@ function App() {
       <a
         className='flex items-center space-x-1 text-white transition-all hover:brightness-75'
         href='https://github.com/gabrielsl11'
+        target='_blank'
       >
         <Github size={18} />
         <span>gabrielsl11</span>
